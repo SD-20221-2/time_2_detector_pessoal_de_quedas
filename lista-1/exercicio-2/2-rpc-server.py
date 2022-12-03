@@ -1,18 +1,19 @@
 from xmlrpc.server import SimpleXMLRPCServer
 
-def employee_new_salary(employee_name, employee_position, employee_salary):
-    employee_salary = float(employee_salary) # string to float
-    employee_new_salary = 0
 
-    if employee_position == "operador":
-        employee_new_salary = float(employee_salary * 1.2)
+def age_majority(person_gender, person_age):
+    if person_gender == "M" and float(person_age) >= 18:
+        return "You've come of age!"
+    elif person_gender == "M" and float(person_age) < 18:
+        return "You didn't come of age. Males don't come of age until they are 18!"
 
-    elif employee_position == "programador":
-        employee_new_salary = float(employee_salary * 1.18)
+    if person_gender == "F" and float(person_age) >= 21:
+        return "You've come of age!"
+    elif person_gender == "F" and float(person_age) < 21:
+        return "You didn't come of age. Females don't come of age until they are 21!"
 
-    return employee_name + "'s new salary is $" + "{:.2f}".format(employee_new_salary) + "." # float to string with 2 decimal places
 
 server = SimpleXMLRPCServer(("localhost", 8000))
 print("Listening on port 8000...")
-server.register_function(employee_new_salary, "employee_new_salary")
+server.register_function(age_majority, "age_majority")
 server.serve_forever()
