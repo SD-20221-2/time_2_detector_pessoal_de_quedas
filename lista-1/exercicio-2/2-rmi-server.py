@@ -1,23 +1,28 @@
-import Pyro5.api
+import Pyro5.api 
 
 @Pyro5.api.expose
-class Salary(object):
-    def employee_new_salary(self, employee_name, employee_position, employee_salary):
-        employee_salary = float(employee_salary) # string to float
-        employee_new_salary = 0
+class Person(object):
+    def age_majority(self, person_name, person_gender, person_age):
+        if person_gender == "M" and float(person_age) >= 18:
+            return "You've come of age!"
 
-        if employee_position == "operador":
-            employee_new_salary = float(employee_salary * 1.2)
 
-        elif employee_position == "programador":
-            employee_new_salary = float(employee_salary * 1.18)
+        elif person_gender == "M" and float(person_age) < 18:
+            return "You didn't come of age. Males don't come of age until they are 18!"
 
-        return employee_name + "'s new salary is $" + "{:.2f}".format(employee_new_salary) + "." # float to string with 2 decimal places
 
-daemon = Pyro5.server.Daemon() # make a Pyro daemon
-ns = Pyro5.api.locate_ns() # find the name server
-uri = daemon.register(Salary) # register the greeting maker as a Pyro object
-ns.register("new_salary", uri) # register the object with a name in the name server
+        if person_gender == "F" and float(person_age) >= 21:
+            return "You've come of age!"
+
+        elif person_gender == "F" and float(person_age) < 21:
+            return "You didn't come of age. Females don't come of age until they are 21!"
+
+
+daemon = Pyro5.server.Daemon()  # make a Pyro daemon
+ns = Pyro5.api.locate_ns()  # find the name server
+uri = daemon.register(Person)  # register the greeting maker as a Pyro object
+# register the object with a name in the name server
+ns.register("age_majority", uri)
 
 print("Ready.")
-daemon.requestLoop() # start the event loop of the server to wait for calls
+daemon.requestLoop()  # start the event loop of the server to wait for calls

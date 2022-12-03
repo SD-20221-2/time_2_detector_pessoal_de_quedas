@@ -1,7 +1,7 @@
 import socket
 
 client_socket = socket.socket() # Creates network socket
-client_socket.connect(('127.0.0.1',12345)) # Connects to server IP and port
+client_socket.connect(('127.0.0.1', 12345)) # Connects to server IP and port
 
 person_name = input("Enter your name: ")
 client_socket.send(person_name.encode())
