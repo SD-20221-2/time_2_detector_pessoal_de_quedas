@@ -1,7 +1,7 @@
 import Pyro5.api
 
 # use name server object lookup uri shortcut
-avg = Pyro5.api.Proxy("PYRONAME:grade_avg")
+avg = Pyro5.api.Proxy("PYRONAME:avg")
 
 grade_N1 = input("Enter the first grade: ")
 grade_N2 = input("Enter the second grade: ")
