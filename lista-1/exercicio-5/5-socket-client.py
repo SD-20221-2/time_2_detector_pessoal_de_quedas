@@ -7,7 +7,6 @@ swimmer_age = input("Enter your age: ")
 client_socket.send(swimmer_age.encode())
 print("SERVER RESPONSE: " + client_socket.recv(1024).decode())
 
-client_socket.send("CONFIRM".encode())
 print("SERVER RESPONSE: " + client_socket.recv(1024).decode())
 
 client_socket.close()

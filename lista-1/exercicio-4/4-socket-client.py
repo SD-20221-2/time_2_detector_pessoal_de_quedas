@@ -11,7 +11,6 @@ person_gender = input("Enter your gender (M for male | F for female): ")
 client_socket.send(person_gender.encode())
 print("SERVER RESPONSE: " + client_socket.recv(1024).decode())
 
-client_socket.send("CONFIRM".encode())
 print("SERVER RESPONSE: " + client_socket.recv(1024).decode())
 
 client_socket.close()
