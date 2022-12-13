@@ -1,4 +1,3 @@
-// socket-client project 1-socket-client.go
 package main
 
 import (
@@ -23,7 +22,7 @@ func server_send(connection net.Conn, err error, message string) {
 }
 
 func server_receive(connection net.Conn, err error) {
-	buffer := make([]byte, 1024)
+	buffer := make([]byte, 4096)
 	mLen, err := connection.Read(buffer)
 	if err != nil {
 		fmt.Println("Error reading:", err.Error())
@@ -32,9 +31,9 @@ func server_receive(connection net.Conn, err error) {
 }
 
 func main() {
-	var employee_name string
-	var employee_position string
-	var employee_salary string
+	var person_name string
+	var person_gender string
+	var person_age string
 
 	// establish connection
 	connection, err := net.Dial(SERVER_TYPE, SERVER_HOST+":"+SERVER_PORT)
@@ -43,16 +42,16 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println("Enter the employee name: ")
-	fmt.Scanln(&employee_name)
-	fmt.Println("Enter the employee position: ")
-	fmt.Scanln(&employee_position)
-	fmt.Println("Enter the employee salary: $")
-	fmt.Scanln(&employee_salary)
+	fmt.Println("Enter your name: ")
+	fmt.Scanln(&person_name)
+	fmt.Println("Enter your gender (M for male | F for female): ")
+	fmt.Scanln(&person_gender)
+	fmt.Println("Enter your age: ")
+	fmt.Scanln(&person_age)
 
-	server_send(connection, err, employee_name)
-	server_send(connection, err, employee_position)
-	server_send(connection, err, employee_salary)
+	server_send(connection, err, person_name)
+	server_send(connection, err, person_gender)
+	server_send(connection, err, person_age)
 	server_receive(connection, err)
 	defer connection.Close()
 }

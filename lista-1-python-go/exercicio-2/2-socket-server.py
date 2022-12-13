@@ -23,16 +23,16 @@ person_age = client_connection.recv(1024).decode()
 client_connection.send(("RECEIVED " + person_age).encode())
 
 if person_gender == "M" and float(person_age) >= 18:
-    client_connection.send(("You've come of age!").encode())
+    client_connection.send((person_name + " come of age!").encode())
 elif person_gender == "M" and float(person_age) < 18:
     client_connection.send(
-        ("You didn't come of age. Males don't come of age until they are 18!").encode())
+        (person_name + " didn't come of age. Males don't come of age until they are 18!").encode())
 
 if person_gender == "F" and float(person_age) >= 21:
-    client_connection.send(("You've come of age!").encode())
+    client_connection.send((person_name + " come of age!").encode())
 elif person_gender == "F" and float(person_age) < 21:
     client_connection.send(
-        ("He didn't come of age. Females don't come of age until they are 21!").encode())
+        (person_name + " didn't come of age. Females don't come of age until they are 21!").encode())
 
 client_connection.close()
 server_socket.close()

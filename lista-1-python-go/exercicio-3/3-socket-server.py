@@ -7,11 +7,11 @@ server_socket.listen()  # Socket waits for client connections
 client_connection, client_address = server_socket.accept()
 print("Socket Up and running with a connection from", client_address)
 
-# Receives the employee name from the client
+# Receives the first grade from the client
 grade_N1 = float(client_connection.recv(1024).decode())
 # Sends the same data back for confirmation
 client_connection.send(("RECEIVED " + str(grade_N1)).encode())
-# Receives the employee position from the client
+# Receives the second grade from the client
 grade_N2 = float(client_connection.recv(1024).decode())
 # Sends the same data back for confirmation
 client_connection.send(("RECEIVED " + str(grade_N2)).encode())
@@ -19,7 +19,8 @@ client_connection.send(("RECEIVED " + str(grade_N2)).encode())
 avg = (grade_N1 + grade_N2)/2
 
 if avg > 3 and avg < 7:
-    # Receives the employee salary from the client
+    client_connection.send(("NEED THE THIRD GRADE!").encode())
+    # Receives the third grade from the client
     grade_N3 = float(client_connection.recv(1024).decode())
     # Sends the same data back for confirmation
     client_connection.send(("RECEIVED " + str(grade_N3)).encode())
