@@ -10,11 +10,11 @@ print("Socket Up and running with a connection from", client_address)
 # Receives the person height from the client
 person_height = client_connection.recv(1024).decode()
 # Sends the same data back for confirmation
-client_connection.send(("RECEIVED " + person_height).encode())
+client_connection.send(person_height.encode())
 # Receives the person gender from the client
 person_gender = client_connection.recv(1024).decode()
 # Sends the same data back for confirmation
-client_connection.send(("RECEIVED " + person_gender).encode())
+client_connection.send(person_gender.encode())
 
 person_height = float(person_height) / 100.0
 ideal_weight = 0.0

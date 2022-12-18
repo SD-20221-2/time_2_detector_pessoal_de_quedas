@@ -10,7 +10,7 @@ print("Socket Up and running with a connection from", client_address)
 # Receives the swimmer age from the client
 swimmer_age = client_connection.recv(1024).decode()
 # Sends the same data back for confirmation
-client_connection.send(("RECEIVED " + swimmer_age).encode())
+client_connection.send(swimmer_age.encode())
 
 swimmer_age = int(swimmer_age)
 swimmer_category = ""
