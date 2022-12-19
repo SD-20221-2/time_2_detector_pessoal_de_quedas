@@ -23,7 +23,7 @@ elif average_balance > 601:
 
 final_response = "Average balance: $" + "{:.2f}".format(average_balance) + " | Credit: $" + "{:.2f}".format(credit) + "." # floats to string with 2 decimal places
 
-client_connection.send(final_response.encode()) # Sends the updated salary
+client_connection.send(final_response.encode()) # Sends client's credit
     
 client_connection.close()
 server_socket.close()
