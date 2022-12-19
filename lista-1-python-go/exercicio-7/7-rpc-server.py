@@ -1,6 +1,6 @@
 from xmlrpc.server import SimpleXMLRPCServer
 
-def employee_new_salary(name, age, service_time):
+def can_retire(name, age, service_time):
 
     age = float(age)
     service_time = float(service_time)
@@ -23,5 +23,5 @@ def employee_new_salary(name, age, service_time):
 
 server = SimpleXMLRPCServer(("localhost", 8000))
 print("Listening on port 8000...")
-server.register_function(employee_new_salary, "employee_new_salary")
+server.register_function(can_retire, "can_retire")
 server.serve_forever()
